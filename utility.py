@@ -9,13 +9,26 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def select():
+    while True:
+        choice = input("Type 1 for a new file, type 2 to load a file! ")
+        if choice in ['1', '2']:
+            if choice == '1':
+                return
+            else:
+                load()
+        else:
+            print("Please type either 1 or 2")
+
+#def load():
+
 def menu():
-    print("""\nType:
+    print("""Type:
           1 to Add Expenses
           2 to Delete Expenses
           3 to View Expenses
           4 to Calculate Expenses
-          5 to Exit\n""")
+          5 to Save and Exit\n""")
 
 
 def choice(): # menu navigation
@@ -70,7 +83,7 @@ def del_expense(dic): # dic is the dictionary
             
         if input_delete in dic:
             del dic[input_delete]
-            again = input("Do you wanna delete again? y for yes, anything else for no").lower()
+            again = input("Do you wanna delete again? y/n ").lower()
                 
             if again == 'y':
                 continue
