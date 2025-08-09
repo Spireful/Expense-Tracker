@@ -4,4 +4,4 @@ Day 1: Make the menu, half finished the add_expenses and some basic stuff (eg, c
 Day 2: Finished add_expenses, and del_expenses, also added clear_screen() (suggested by chatgpt)
 Day 3: Added calc_expenses, comments, go_to_menu, 5 to break, and some other tweaks
 Day 4: Major look overhauls, added view_expenses(), fixed major bugs and edge cases
-Day 5: Patched bugs, added select() choose between new or old file, not used yet
+Day 5: Patched bugs, added select() choose between new or old file, not used yet, added num based deletion

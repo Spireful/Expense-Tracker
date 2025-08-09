@@ -58,12 +58,15 @@ def add_expense(dic):
         break
 
     while True:
-        amount = input("Cost of the expense: ") # cost
+        amount = input("Cost of the Expense: ") # cost
 
         try:
             amount = float(amount)
             if amount < 0.01:
                 print("Please enter a valid Cost!")
+                continue
+            elif amount > 999999999:
+                print("Amount is too large!")
                 continue
             if amount.is_integer():
                 amount = int(amount)
@@ -79,7 +82,7 @@ def add_expense(dic):
 
 def del_expense(dic): # dic is the dictionary
     clear_screen()
-
+    dic_list = list(dic.items())
     if len(dic) == 0:
         print("There are no Expenses yet! ")
         go_to_menu()
@@ -87,22 +90,29 @@ def del_expense(dic): # dic is the dictionary
 
     view_expenses(dic)
     while True:
-        input_delete = input("\nWhich expense do you want to delete?\n(Type m to back to menu) ").lower() # what they want to delete
-            
-        if input_delete in dic:
-            del dic[input_delete]
-            again = input("Do you wanna delete again? y/n ").lower()
+        key_to_delete = input("\nWhich Expense do you want to delete? (In number) or type m to go back to the menu ")
+        if key_to_delete == "m":
+            return
+        try:
+            key_to_delete = int(key_to_delete)    
+        except ValueError:
+            print("Please enter an Integer")
+            continue
+        if 1 <= key_to_delete <= len(dic):
+            num_to_delete = dic_list[key_to_delete - 1][0]
+            del dic[num_to_delete]
+            if len(dic) == 0:
+                break
+            again = input("\nDo you wanna delete again? y/n ").lower()
                 
             if again == 'y':
                 continue
             else:
                 break
-            
-        elif input_delete == "m":
-            return
         else:
-            print("That expense does not exist")
+            print("That Expense does not exist!")
 
+        
     return dic
 
 
