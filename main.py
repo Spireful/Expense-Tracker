@@ -10,7 +10,7 @@ while True:
     user_choice = choice()
 
     if user_choice == 1:
-        name, cost = add_expense()
+        name, cost = add_expense(expenses)
         expenses[name] = cost
     elif user_choice == 2:
         del_expense(expenses)

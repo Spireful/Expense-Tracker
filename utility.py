@@ -43,20 +43,28 @@ def choice(): # menu navigation
             print("\nPlease select a valid option\n")
 
 
-def add_expense():
+def add_expense(dic):
     clear_screen()
 
     while True:
-        name = input("\nName of the expense: ").lower().strip() # name
+        name = input("Name of the expense: ").lower().strip() # name
         if len(name) == 0:
             print("Please enter a valid name!")
-        else:
-            break
+            continue
+        elif name in dic:
+            choice = input(f"{name} already exists, do you wanna overwrite? y/n ").lower().strip()
+            if choice != "y":
+                continue
+        break
 
     while True:
         amount = input("Cost of the expense: ") # cost
+
         try:
             amount = float(amount)
+            if amount < 0.01:
+                print("Please enter a valid Cost!")
+                continue
             if amount.is_integer():
                 amount = int(amount)
             print(f"\nAdded Expense: '{name.capitalize()}' of Value: ${amount}!")
