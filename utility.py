@@ -15,19 +15,19 @@ def menu():
           2 to Delete Expenses
           3 to View Expenses
           4 to Calculate Expenses
-          5 to Exit""")
+          5 to Exit\n""")
 
 
 def choice(): # menu navigation
 
     while True:
-        choice = input("\nType your choice: ")
+        choice = input("Type your choice: ")
 
         if choice in ['1', '2', '3', '4', '5']:
             return int(choice)
             break
         else: 
-            menu()
+            print("\nPlease select a valid option\n")
 
 
 def add_expense():
@@ -46,11 +46,11 @@ def add_expense():
             amount = float(amount)
             if amount.is_integer():
                 amount = int(amount)
-                print(f"\nAdded Expense: '{name.capitalize()}' of Value: ${amount}!")
-                go_to_menu()
-                break
+            print(f"\nAdded Expense: '{name.capitalize()}' of Value: ${amount}!")
+            go_to_menu()
+            break
         except ValueError:
-            print("Please enter an Integer")
+            print("Please enter a valid Cost!")
             continue
 
     return name, amount
@@ -111,5 +111,9 @@ def view_expenses(dic):
     print("Expenses: \n")
     i = 1
     for item, amount in dic.items():
-        print(f"{i}. {item.capitalize()}: ${amount:.2f}") # no clear screen, by the way, it interferes
+        if amount.is_integer():
+            amount = int(amount)
+        else:
+            amount = round(amount, 2)
+        print(f"{i}. {item.capitalize()}: ${amount}") # no clear screen, by the way, it interferes
         i += 1
